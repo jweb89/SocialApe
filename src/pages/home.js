@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
-import Scream from "../Components/Scream";
-import Profile from "../Components/Profile";
+import Scream from "../Components/scream/Scream";
+import Profile from "../Components/profile/Profile";
 import PropTypes from "prop-types";
+import ScreamSkelaton from "../util/ScreamSkelaton";
 
 import { connect } from "react-redux";
 import { getScreams } from "../Redux/actions/dataActions";
@@ -18,8 +18,9 @@ export class home extends Component {
     let recentScreamsMarkup = !loading ? (
       screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
     ) : (
-      <p>Loading...</p>
+      <ScreamSkelaton />
     );
+
     return (
       <Grid container spacing={10}>
         <Grid item sm={8} xs={12}>

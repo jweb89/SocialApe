@@ -12,6 +12,7 @@
     "dayjs": "^1.8.24",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
+    "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
@@ -41,7 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-socialape-21bc0.cloudfunctions.net/api",
+  "proxy": "http://localhost:5000/socialape-21bc0/us-central1/api",
   "devDependencies": {
     "redux-devtools-extension": "^2.13.8"
   }

@@ -47,6 +47,7 @@ export class signup extends Component {
       password: "",
       confirmPassword: "",
       handle: "",
+      phone: "",
       errors: {},
     };
   }
@@ -55,6 +56,7 @@ export class signup extends Component {
     if (nextProps.UI.errors) {
       this.setState({ errors: nextProps.UI.errors });
     }
+    console.log(nextProps.UI.errors);
   }
 
   handleSubmit = (event) => {
@@ -67,6 +69,7 @@ export class signup extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
       handle: this.state.handle,
+      phone: this.state.phone,
     };
     this.props.signupUser(newUserData, this.props.history);
   };
@@ -144,6 +147,18 @@ export class signup extends Component {
               helperText={errors.handle}
               error={errors.handle ? true : false}
               value={this.state.handle}
+              onChange={this.handleChange}
+              fullWidth
+            />
+            <TextField
+              id="phone"
+              name="phone"
+              type="text"
+              label="Phone"
+              className={classes.textField}
+              helperText={errors.phone}
+              error={errors.phone ? true : false}
+              value={this.state.phone}
               onChange={this.handleChange}
               fullWidth
             />

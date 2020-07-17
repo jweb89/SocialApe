@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import theme from "../util/theme";
-import MyButton from "../util/MyButton";
+import theme from "../../util/theme";
+import MyButton from "../../util/MyButton";
 
 import { connect } from "react-redux";
-import { editUserDetails } from "../Redux/actions/userActions";
+import { editUserDetails } from "../../Redux/actions/userActions";
 import {
-  Tooltip,
-  IconButton,
   Button,
   TextField,
   Dialog,

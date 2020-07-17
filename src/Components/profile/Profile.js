@@ -4,6 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import EditDetails from "./EditDetails";
+import ProfileSkelaton from "../../util/ProfileSkelaton";
 
 //MUI stuff
 import Button from "@material-ui/core/Button";
@@ -15,59 +16,14 @@ import LocationOn from "@material-ui/icons/LocationOn.js";
 import LinkIcon from "@material-ui/icons/Link.js";
 import CalendarToday from "@material-ui/icons/CalendarToday.js";
 import EditIcon from "@material-ui/icons/Edit";
-import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 //Redux Stuff
 import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../Redux/actions/userActions";
-import MyButton from "../util/MyButton";
+import { uploadImage } from "../../Redux/actions/userActions";
+import MyButton from "../../util/MyButton";
 
 const styles = (theme) => ({
-  paper: {
-    padding: 20,
-  },
-  profile: {
-    "& .image-wrapper": {
-      textAlign: "center",
-      position: "relative",
-      "& button": {
-        position: "absolute",
-        top: "80%",
-        left: "70%",
-      },
-    },
-    "& .profile-image": {
-      width: 200,
-      height: 200,
-      objectFit: "cover",
-      maxWidth: "100%",
-      borderRadius: "50%",
-    },
-    "& .profile-details": {
-      textAlign: "center",
-      "& span, svg": {
-        verticalAlign: "middle",
-      },
-      "& a": {
-        color: theme.palette.primary.main,
-      },
-    },
-    "& hr": {
-      border: "none",
-      margin: "0 0 10px 0",
-    },
-    "& svg.button": {
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-  },
-  buttons: {
-    textAlign: "center",
-    "& a": {
-      margin: "20px 10px",
-    },
-  },
+  ...theme.spreadThis,
 });
 
 class Profile extends Component {
@@ -81,10 +37,6 @@ class Profile extends Component {
   handleEditPicture = () => {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
-  };
-
-  handleLogout = () => {
-    this.props.logoutUser();
   };
 
   render() {
@@ -140,7 +92,7 @@ class Profile extends Component {
               {website && (
                 <Fragment>
                   <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="nopener noreferred">
+                  <a href={website} target="_blank" rel="noopener noreferrer">
                     {"     "}
                     {website}
                   </a>
@@ -150,9 +102,7 @@ class Profile extends Component {
               <CalendarToday color="primary" /> {"   "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <MyButton tip="Logout" onClick={this.handleLogout}>
-              <KeyboardReturn color="primary" />
-            </MyButton>
+
             <EditDetails />
           </div>
         </Paper>
@@ -182,7 +132,7 @@ class Profile extends Component {
         </Paper>
       )
     ) : (
-      <p>Loading...</p>
+      <ProfileSkelaton />
     );
 
     return profileMarkup;
@@ -193,10 +143,9 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-const mapActionToProps = { logoutUser, uploadImage };
+const mapActionToProps = { uploadImage };
 
 Profile.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
