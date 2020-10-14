@@ -39,7 +39,7 @@ export class settings extends Component {
       phone: credentials.phone || "",
       handle: credentials.handle || "",
     });
-    console.log(credentials);
+    
   };
 
   componentWillReceiveProps(nextprops) {

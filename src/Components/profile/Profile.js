@@ -101,9 +101,10 @@ class Profile extends Component {
               )}
               <CalendarToday color="primary" /> {"   "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+              
             </div>
-
             <EditDetails />
+            
           </div>
         </Paper>
       ) : (

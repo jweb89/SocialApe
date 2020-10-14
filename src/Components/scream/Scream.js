@@ -6,7 +6,7 @@ import {
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
@@ -14,10 +14,11 @@ import DeleteScream from "./DeleteScream";
 import ScreamDialog from "./ScreamDialog";
 
 import ChatIcon from "@material-ui/icons/Chat";
+import UnfoldMore from "@material-ui/icons/UnfoldMore";
 
 import { connect } from "react-redux";
 
-import MyButton from "../../util/MyButton";
+
 import LikeButton from "./LikeButton";
 
 const styles = {
@@ -32,6 +33,10 @@ const styles = {
   content: {
     padding: 25,
     objectFit: "cover",
+  },
+  expandButton: {
+    position: "absolute",
+    left: "90%",
   },
 };
 
@@ -54,6 +59,8 @@ class Scream extends Component {
         credentials: { handle },
       },
     } = this.props;
+
+    console.log(this.props);
 
     const deleteButton =
       authenticated && userHandle === handle ? (
@@ -83,14 +90,25 @@ class Scream extends Component {
           <Typography variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
-          <MyButton tip="comments">
-            <ChatIcon color="primary"></ChatIcon>
-          </MyButton>
+          
+            
+          <ScreamDialog
+            screamId={screamId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+            icon={<ChatIcon color="primary" />}
+            tip='Comments'
+          />
+                
+          
           <span>{commentCount} Comments</span>
           <ScreamDialog
             screamId={screamId}
             userHandle={userHandle}
             openDialog={this.props.openDialog}
+            icon={<UnfoldMore color="primary" />}
+            tipClassName={true}
+            tip='Expand Scream'
           />
         </CardContent>
       </Card>

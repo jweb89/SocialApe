@@ -27,7 +27,7 @@ import donate from "./pages/donate";
 const theme = createMuiTheme(themeFile);
 
 axios.defaults.baseURL =
-  "http://localhost:5000/socialape-21bc0/us-central1/api";
+  "http://localhost:5000/socialape-f0c8e/us-central1/api";
 
 const token = localStorage.FBIdToken;
 if (token) {
